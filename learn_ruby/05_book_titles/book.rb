@@ -15,6 +15,6 @@ class Book
 
 end
 
-# book = Book.new
-# book.title = "the man in the iron mask"
-# puts book.title
+book = Book.new
+book.title = "the man in the iron mask"
+puts book.title
