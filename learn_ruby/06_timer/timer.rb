@@ -15,7 +15,6 @@ class Timer
 				time_arr[index] += 1
 				@seconds = @seconds - divisor
 			end
-			# @time_arr[index] = padded(@time_arr[index])
 			padded(time_arr[index])
 			time_arr[index] = @num
 		end			
