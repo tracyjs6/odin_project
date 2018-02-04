@@ -1,39 +1,33 @@
 def translate(sentence)
 
-	# vowels = %w{a e i o u}
-	# This can be improved!!! to only require the lowercase vowels and then do a case insensitive compare
-	vowels = %w{A E I O U a e i o u}
 	words = sentence.split
 
-	string_to_move = ""
-	new_word = ""
-	new_sentence = ""
-
-	words.each do |word|
-		capitalized = false
-		if word[0] != word[0].downcase
-			# puts "WORD[0]: #{word[0]}"
-			capitalized = true
-		end
+	words.each_with_index do |word, index|
+		string_to_move = ""
+		word[0] != word[0].downcase ? capitalized = true : capitalized = false
 		while true
-			if !vowels.include? word[0]
+			if word[0] =~ /[^aeiou]/i
 				string_to_move = string_to_move + word[0]
 				word = word[1..-1]
 			elsif "u".include? word[0]
-				if string_to_move[-1] == "q" || string_to_move[-1] == "Q"
+				if string_to_move[-1] =~ /[Qq]/
 					string_to_move = string_to_move + word[0]
 					word = word[1..-1]
 				end
 			else
-				new_word = word + string_to_move + "ay"
-				new_word = new_word.capitalize if capitalized == true
+				word = word + string_to_move + "ay"
+				capitalized == true ? words[index] = word.capitalize : words[index] = word
 				break
 			end
 		end
-		string_to_move = ""
-		new_sentence = new_sentence + new_word + " "
 	end
-	new_sentence = new_sentence[0..-2]
+	words.join(" ")
 end
+
+# The only thing bothering me about this method now is the duplication of the following
+# string_to_move = string_to_move + word[0]
+# word = word[1..-1]
+# Hmmmm ... what to do about it? Create a new method? Find a way to combine the 2 statements into 1
+# just found 1 more thing I might want to improve - use map/collect to change all words at once rather than use each?
 
 # puts translate("I am Tracy")

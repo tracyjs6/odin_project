@@ -1,24 +1,18 @@
 class Timer
 	attr_accessor :seconds
 	attr_writer :num
-
-	@@divisors = [3600, 60, 1]
 	
 	def initialize(seconds = 0)
 		@seconds = seconds
 	end
 
 	def time_string
-		time_arr = [0, 0, 0]
-		@@divisors.each_with_index do |divisor, index|
-			while @seconds/divisor >= 1
-				time_arr[index] += 1
-				@seconds = @seconds - divisor
-			end
-			padded(time_arr[index])
-			time_arr[index] = @num
-		end			
-		time_arr.join(":")
+		padded(@seconds / 3600)				# hours
+		time = @num + ":"
+		padded((@seconds % 3600) / 60)		# mins
+		time += @num + ":"
+		padded((@seconds % 3600)  % 60)		# remaining seconds
+		time += @num
 	end
 
 	def padded(num) 
@@ -30,9 +24,9 @@ class Timer
 	end
 end
 
-# timer = Timer.new
-# timer.seconds = 6397
-# puts timer.time_string
+timer = Timer.new
+timer.seconds = 6397
+puts timer.time_string
 # puts timer.padded(11)
 
 

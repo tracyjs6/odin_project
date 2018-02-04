@@ -9,20 +9,26 @@ def subtract(a, b)
 	result = a - b
 end
 
+# def sum(a)
+# 	result = 0
+# 	a.each { |x| result += x }
+# 	result
+# end
+
+# BETTER SUM
 def sum(a)
-	result = 0
-	a.each do |x|
-		result += x
-	end
-	result
+  a.reduce(0, :+)
 end
 
+# def multiply(*a)
+# 	result = 1
+# 	a.each { |x| result *= x }
+# 	result
+# end
+
+# BETTER MULTIPLY
 def multiply(*a)
-	result = 1
-	a.each do |x|
-		result = result * x
-	end
-	result
+  a.reduce(1, :*)
 end
 
 def power(a, b)
@@ -35,7 +41,8 @@ def factorial(a)
 	result = 1
 	if a == 0
 		result = 0
-	elsif a.downto(1) do |x|
+	elsif 1.upto(a) do |x|
+	#elsif a.downto(1) do |x|
 		result *= x
 		# puts "X: #{x}"
 		# puts "RESULT: #{result}"
@@ -43,3 +50,4 @@ def factorial(a)
 	end
 	result
 end
+
