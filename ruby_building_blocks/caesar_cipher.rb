@@ -10,15 +10,15 @@
 
 def caesar_cipher(phrase, shift)
 
-	alpha = ("a".."z").to_a
+  alpha = ("a".."z").to_a
 
-	for i in 0...phrase.length do
-		if phrase[i] =~ /[a-z]/i
-			shift_index = (alpha.index(phrase[i].downcase) + shift) % 26
-			phrase[i] == phrase[i].downcase ? phrase[i] = alpha[shift_index] : phrase[i] = alpha[shift_index].upcase
-		end
-	end
-	phrase
+  for i in 0...phrase.length do
+    if phrase[i] =~ /[a-z]/i
+      shift_index = (alpha.index(phrase[i].downcase) + shift) % 26
+      phrase[i] == phrase[i].downcase ? phrase[i] = alpha[shift_index] : phrase[i] = alpha[shift_index].upcase
+    end
+  end
+  phrase
 end
 
 puts caesar_cipher("What a string!", 5)

@@ -5,20 +5,20 @@
 
 def substrings(word, word_list)
 
-	word_count = {}
+  word_count = {}
 
-	word_list.each do |x|
-		next if x.length > word.length
-		if x.length <= word.length
-			for i in 0..(word.length - x.length) do
-				if word[i..(i + x.length - 1)] == x
-					word_count.has_key?(x) ? word_count[x] += 1 : word_count[x] = 1
-				end
-			end
+  word_list.each do |x|
+    next if x.length > word.length
+    if x.length <= word.length
+      for i in 0..(word.length - x.length) do
+        if word[i..(i + x.length - 1)] == x
+          word_count.has_key?(x) ? word_count[x] += 1 : word_count[x] = 1
+        end
+      end
 
-		end
-	end
-	p word_count
+    end
+  end
+  p word_count
 end
 
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit", "low"]
