@@ -171,24 +171,24 @@ module Enumerable
   # reduce { |memo, obj| block } → obj 
   def my_inject(*args)
     case args.length
-      when 0
-        # block given, initial == first elem
-        total = self[0]
-        self[1..-1].my_each {|x| total = yield(total, x)}
-      when 1
-        # if block, arg == initial
-        if block_given?
-          total = args[0]
-          self.my_each {|x| total = yield(total, x)}
-        # else args[0] == sym, initial == first elem, no block
-        else
-          total = self[0]
-          self[1..-1].my_each { |elem| total = args[0].to_proc.call(total, elem) }
-        end
-      when 2
-        # args: args[0] == initial, args[1] == sym, no block
+    when 0
+      # block given, initial == first elem
+      total = self[0]
+      self[1..-1].my_each { |x| total = yield(total, x) }
+    when 1
+      # if block, arg == initial
+      if block_given?
         total = args[0]
-        self.my_each { |elem| total = args[1].to_proc.call(total, elem) }
+        self.my_each { |x| total = yield(total, x) }
+      # else args[0] == sym, initial == first elem, no block
+      else
+        total = self[0]
+        self[1..-1].my_each { |elem| total = args[0].to_proc.call(total, elem) }
+      end
+    when 2
+      # args: args[0] == initial, args[1] == sym, no block
+      total = args[0]
+      self.my_each { |elem| total = args[1].to_proc.call(total, elem) }
     end
     total
   end

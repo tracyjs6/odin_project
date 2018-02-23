@@ -18,7 +18,9 @@ def caesar_cipher(phrase, shift)
       phrase[i] == phrase[i].downcase ? phrase[i] = alpha[shift_index] : phrase[i] = alpha[shift_index].upcase
     end
   end
+
   phrase
+  
 end
 
 puts caesar_cipher("What a string!", 5)

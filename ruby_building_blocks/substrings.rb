@@ -21,6 +21,6 @@ def substrings(word, word_list)
   p word_count
 end
 
-dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit", "low"]
+dictionary = ["below", "down", "go", "going", "horn", "how", "howdy", "it", "i", "low", "own", "part", "partner", "sit", "low"]
 # dictionary = ["low", "below", "low"]
 substrings("below", dictionary)
