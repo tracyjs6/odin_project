@@ -1,7 +1,3 @@
-# add in private methods!!!
-# try to get rid of all the instance vars by adding attr_XXX
-
-
 require "./players"
 require "./board"
 
@@ -9,7 +5,8 @@ class Game
   include Players
   include Board
 
-  attr_reader :players
+  attr_reader :players, :player_name, :player_symbol, :move
+  attr_accessor :ctr
 
   def initialize
     create_players
@@ -19,14 +16,28 @@ class Game
 
     @game_board = Board.new
 
-    ctr = 0
+    @ctr = 0
     while true
-      @game_board.current_player(ctr, players[ctr % 2].name, players[ctr % 2].symbol)
-      @game_board.make_move
-      ctr += 1
+      current_player
+      make_move
+      @game_board.check_move(ctr, player_name, player_symbol, move)
+      # why do I have issues with the below, even though ctr used in above method, and have attr_accessor???
+      # ctr += 1
+      @ctr += 1
     end
 
-  end  
+  end 
+
+  def make_move
+    puts "\n#{player_name}, please make your move"
+    @move = gets.chomp.to_i
+  end 
+
+  private
+  def current_player
+    @player_name = players[ctr % 2].name
+    @player_symbol = players[ctr % 2].symbol
+  end 
 
 end
 

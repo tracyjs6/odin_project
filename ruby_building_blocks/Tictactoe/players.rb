@@ -23,6 +23,7 @@ module Players
       @players
   end
 
+  private
   def assign_players_symbol
     symbols = ["X", "O"]
     for i in 0..1
