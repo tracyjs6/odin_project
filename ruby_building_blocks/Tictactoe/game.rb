@@ -17,12 +17,12 @@ class Game
     puts "   #{players[0].name} will go first as #{players[0].symbol}'s"
     puts "   #{players[1].name} will follow as #{players[1].symbol}'s"
 
-    @board = Board.new
+    @game_board = Board.new
 
     ctr = 0
     while true
-      @board.current_player(ctr, players[ctr % 2].name, players[ctr % 2].symbol)
-      @board.make_move
+      @game_board.current_player(ctr, players[ctr % 2].name, players[ctr % 2].symbol)
+      @game_board.make_move
       ctr += 1
     end
 
