@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/hangman'
+
+my_game = HangMan.new
+my_game.get_player_name
+my_game.start_game

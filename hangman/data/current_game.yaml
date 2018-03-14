@@ -1,0 +1,17 @@
+---
+:name: T
+:max_attempts: 12
+:counter: 0
+:word:
+- g
+- r
+- u
+- n
+- t
+:guess:
+- g
+- r
+- u
+- n
+- t
+:letters: 'e f a i o u t s r n b g '
