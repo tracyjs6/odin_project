@@ -9,3 +9,11 @@ end
 # append([], 3) # => [3, 2, 1, 0] append(([].push 3), 2)
 # append([], -1) # => []          
 append([], 12)
+
+# Was written in the tutorial as
+# def append(ary, n)
+#   return ary if n < 0
+#   ary.push n
+#   append((ary), (n-1))
+# end
+# which makes it easier to compare with reverse_append example, and hence reverse_append easier(ish) to understand.
