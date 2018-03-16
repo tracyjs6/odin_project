@@ -45,7 +45,8 @@ roman_mapping = {
   }
   curr_key = roman_mapping.keys[ctr]
   curr_value = roman_mapping.values[ctr]
-  while roman_num[0..(curr_key.length - 1)] == curr_key
+  # while roman_num[0..(curr_key.length - 1)] == curr_key
+  while roman_num.start_with? curr_key
     num += curr_value
     roman_num = roman_num[curr_key.length..-1]
   end
