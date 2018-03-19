@@ -11,7 +11,7 @@
 #   p new_ary
 # end
 
-# The below works but I get the feeling I should not be using arrays to hold the 
+# The below works but I get the feeling I should not be using array of arrays to hold the intermediate steps
  
 def merge_sort(ary, type = "split", ctr = 0)
   new_ary = []
@@ -23,7 +23,7 @@ def merge_sort(ary, type = "split", ctr = 0)
     # Seems like it would be much quicker, but guess I would need to take perf stats to know for sure.
     case type
     when "split"
-      # the only reason I need ctr is for this specific scenario, what else could I do
+      # the only reason I need ctr is for this specific scenario where the initial array is flat, want to get rid of it
       if ctr == 0
         new_ary.push ary[0..ary.length/2 - 1], ary[ary.length/2..-1]
       else
@@ -57,30 +57,25 @@ def merge_sort(ary, type = "split", ctr = 0)
         # below is for when there is no right element
         if r.nil?
           new_ary[i].push l.shift while !l.empty?
-          puts "HERE4: new_ary: #{new_ary}"
         else
           # else until both left and right elements are empty
           while (!l.empty?) || (!r.empty?)
             if l.length == 0
               new_ary[i].push r.shift
-              puts "HERE: new_ary: #{new_ary}"
             elsif r.length == 0
               new_ary[i].push l.shift
-              puts "ctr: #{ctr}"
-              puts "HERE2: new_ary: #{new_ary}"
             else
               l[0] < r[0] ? (new_ary[i].push l.shift) : new_ary[i].push(r.shift)
-              puts "HERE3: new_ary: #{new_ary}"
             end
           end
         end
       end
       sleep 3
       ctr -= 1
-      # flattening takes time ... instead if length = 2 should just write to a flattened array
-      # or maybe I should do the whole thing in a flattened array
+      # flattening takes time ... instead if length = 2 should just write final results to a flattened array
+      # or maybe I should do the whole thing as a flattened array?
       # wonder what the different performance would be?
-      # also if flattened 
+      # also if flattened no longer need that darned ctr being passed
       ctr != 0 ? merge_sort(new_ary, "merge", ctr = 0) : (return new_ary.flatten!)
 
     end
